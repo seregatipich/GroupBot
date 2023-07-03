@@ -3,13 +3,11 @@ import os
 from aiogram import Bot, Dispatcher, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
-from aiogram.dispatcher.filters import Text
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.types import ReplyKeyboardRemove
 from dotenv import load_dotenv
 
 from google_handler import save_data
-from keyboards import start_keyboard
 
 
 load_dotenv()
@@ -32,12 +30,12 @@ class Form(StatesGroup):
 
 @dp.message_handler(commands=['start'])
 async def start(message: types.Message) -> None:
-    await message.reply('Привет! Ответь на несколько вопросов, что бы попасть в группу. Нажми на кнопку, чтобы начать опрос.', reply_markup=start_keyboard())
+    await message.reply('Привет!\nОтветь на несколько вопросов, что бы попасть в группу. Чтобы начать опрос, нажми на 👉🏻 /nachat_opros.')
 
 
-@dp.message_handler(Text(equals='Начать опрос'))
+@dp.message_handler(commands=['nachat_opros'])
 async def start_poll(message: types.Message) -> None:
-    await message.reply('Введите свои фамилию и имя', reply_markup=ReplyKeyboardRemove())
+    await message.reply('Как вас зовут?')
     await Form.fullname.set()
 
 
@@ -45,7 +43,7 @@ async def start_poll(message: types.Message) -> None:
 async def process_fullname(message: types.Message, state: FSMContext) -> None:
     async with state.proxy() as data:
         data['fullname'] = message.text
-    await message.reply("Введите свой телефон:")
+    await message.reply("Ваш номер телефона:")
     await Form.next()
 
 
@@ -53,7 +51,7 @@ async def process_fullname(message: types.Message, state: FSMContext) -> None:
 async def process_phone(message: types.Message, state: FSMContext) -> None:
     async with state.proxy() as data:
         data['phone'] = message.text
-    await message.reply("Введите свой емейл:")
+    await message.reply("Ваш Email:")
     await Form.next()
 
 
@@ -61,7 +59,7 @@ async def process_phone(message: types.Message, state: FSMContext) -> None:
 async def process_email(message: types.Message, state: FSMContext) -> None:
     async with state.proxy() as data:
         data['email'] = message.text
-    await message.reply("Введите данные своих социальных сетей:")
+    await message.reply("Ссылка на ваши социальные сети:")
     await Form.next()
 
 
