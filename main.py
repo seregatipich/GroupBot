@@ -1,17 +1,15 @@
 import os
 
-import gspread
 from aiogram import Bot, Dispatcher, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher import FSMContext
-from aiogram.dispatcher.filters import Command, Text
+from aiogram.dispatcher.filters import Text
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.types import ReplyKeyboardRemove
 from dotenv import load_dotenv
-from oauth2client.service_account import ServiceAccountCredentials
 
-from keyboards import start_keyboard
 from google_handler import save_data
+from keyboards import start_keyboard
 
 load_dotenv()
 
@@ -40,7 +38,7 @@ async def start(message: types.Message) -> None:
 
 @dp.message_handler(Text(equals='Начать опрос'))
 async def start_poll(message: types.Message) -> None:
-    await message.reply('Введите свои фамилию и имя')
+    await message.reply('Введите свои фамилию и имя', reply_markup=ReplyKeyboardRemove())
     await Form.fullname.set()
 
 
@@ -48,7 +46,7 @@ async def start_poll(message: types.Message) -> None:
 async def process_fullname(message: types.Message, state: FSMContext) -> None:
     async with state.proxy() as data:
         data['fullname'] = message.text
-    await message.reply("Введите свой телефон:", reply_markup=ReplyKeyboardRemove())
+    await message.reply("Введите свой телефон:")
     await Form.next()
 
 
@@ -89,8 +87,8 @@ async def process_help(message: types.Message, state: FSMContext) -> None:
     async with state.proxy() as data:
         data['help'] = message.text
 
-    print(dict(data))
     save_data(dict(data))
+
     await state.finish()
     await bot.send_message(message.chat.id, f"Спасибо за участие в опросе! Вы можете присоединиться к нашей приватной группе по ссылке: {PRIVATE_GROUP_LINK}")
 
