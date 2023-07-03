@@ -11,9 +11,8 @@ from dotenv import load_dotenv
 from google_handler import save_data
 from keyboards import start_keyboard
 
+
 load_dotenv()
-
-
 API_TOKEN = os.getenv('TELEGRAM_TOKEN')
 PRIVATE_GROUP_LINK = os.getenv('TELEGRAM_GROUP_LINK')
 
@@ -86,11 +85,9 @@ async def process_profession(message: types.Message, state: FSMContext) -> None:
 async def process_help(message: types.Message, state: FSMContext) -> None:
     async with state.proxy() as data:
         data['help'] = message.text
-
     save_data(dict(data))
-
     await state.finish()
-    await bot.send_message(message.chat.id, f"Спасибо за участие в опросе! Вы можете присоединиться к нашей приватной группе по ссылке: {PRIVATE_GROUP_LINK}")
+    await bot.send_message(message.chat.id, f"Спасибо за участие в опросе! Вы можете присоединиться к нашей группе по ссылке: {PRIVATE_GROUP_LINK}")
 
 
 if __name__ == '__main__':

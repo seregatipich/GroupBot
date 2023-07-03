@@ -1,5 +1,8 @@
+import os
+
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from dotenv import load_dotenv
 
 
 def save_data(user_data: dict) -> None:
@@ -17,19 +20,17 @@ def save_data(user_data: dict) -> None:
     Returns:
     None
     """
-
     scope = [
         'https://www.googleapis.com/auth/spreadsheets',
         'https://www.googleapis.com/auth/drive'
     ]
-
     credentials = ServiceAccountCredentials.from_json_keyfile_name(
         'gs_credentials.json', scope
     )
-
     client = gspread.authorize(credentials)
 
-    sheet = client.open('generoses_bot_spreadsheet').sheet1
+    load_dotenv()
+    sheet = client.open(os.getenv('GOOGLE_SPREADSHEET_NAME')).sheet1
     row = [
         user_data['fullname'],
         user_data['phone'],
