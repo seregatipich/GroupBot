@@ -10,7 +10,7 @@
 - gspread
 - oauth2client
 
-## Usage:
+## Installation:
 
 1. Clone the repo to your local machine:
 ```
@@ -45,3 +45,10 @@ GOOGLE_SPREADSHEET_NAME=your_google_spreadsheet_name_here
 3. Create credentials for a service account.
 4. Download the JSON credentials file and rename it to gs_credentials.json.
 5. Share your spreadsheet with the email address found in the client_email field in the gs_credentials.json file.
+
+## Usage
+1. Set up the environment variables as mentioned above.
+2. Run the script using the following command:
+```
+python3 main.py
+```
