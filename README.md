@@ -39,3 +39,9 @@ GOOGLE_SPREADSHEET_NAME=your_google_spreadsheet_name_here
 ```
 
 ## Setting Up Google Sheets API
+#### To save data to Google Sheets, you'll need to set up the Google Sheets API:
+1. Go to the Google Developers Console.
+2. Create a new project and enable the Sheets API for it.
+3. Create credentials for a service account.
+4. Download the JSON credentials file and rename it to gs_credentials.json.
+5. Share your spreadsheet with the email address found in the client_email field in the gs_credentials.json file.
