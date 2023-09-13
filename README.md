@@ -65,3 +65,7 @@ python3 main.py
 - 'process_social_media': Processes the social media link of the user.
 - 'process_profession': Processes the profession of the user.
 - 'process_help': Processes the help preference of the user and concludes the conversation.
+
+
+## Contribution
+Feel free to fork the project and submit pull requests. Ensure to follow the code structure and format.
