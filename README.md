@@ -56,3 +56,12 @@ python3 main.py
 ## Bot Commands
 - '/start': Initiates the conversation with a greeting message.
 - '/nachat_opros': Starts the application process by asking for the user's details step by step.
+
+## Bot message handlers
+
+- 'process_fullname': Processes the full name of the user.
+- 'process_phone': Processes the phone number of the user.
+- 'process_email': Processes the email of the user.
+- 'process_social_media': Processes the social media link of the user.
+- 'process_profession': Processes the profession of the user.
+- 'process_help': Processes the help preference of the user and concludes the conversation.
