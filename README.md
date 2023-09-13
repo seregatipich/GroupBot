@@ -66,6 +66,8 @@ python3 main.py
 - 'process_profession': Processes the profession of the user.
 - 'process_help': Processes the help preference of the user and concludes the conversation.
 
-
 ## Contribution
 Feel free to fork the project and submit pull requests. Ensure to follow the code structure and format.
+
+## License
+This project is open-source and available under MIT License 
