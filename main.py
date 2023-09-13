@@ -19,6 +19,8 @@ dp = Dispatcher(bot, storage=MemoryStorage())
 
 
 class Form(StatesGroup):
+    """A class representing the form states for the bot."""
+
     fullname = State()
     phone = State()
     email = State()
@@ -29,17 +31,23 @@ class Form(StatesGroup):
 
 @dp.message_handler(commands=['start'], state='*')
 async def start(message: types.Message) -> None:
+    """Handler function to initiate the conversation with the user."""
+
     await bot.send_message(message.chat.id, 'Привет!\nОтветь на несколько вопросов, чтобы попасть в группу.\nНажми на 👉🏻 /nachat_opros.')
 
 
 @dp.message_handler(commands=['nachat_opros'])
 async def start_poll(message: types.Message) -> None:
+    """Handler function to start the poll."""
+
     await bot.send_message(message.chat.id, 'Как вас зовут?')
     await Form.fullname.set()
 
 
 @dp.message_handler(state=Form.fullname)
 async def process_fullname(message: types.Message, state: FSMContext) -> None:
+    """Handler function to process the user's full name."""
+
     async with state.proxy() as data:
         data['fullname'] = message.text
     await bot.send_message(message.chat.id, "Ваш номер телефона:")
@@ -48,6 +56,8 @@ async def process_fullname(message: types.Message, state: FSMContext) -> None:
 
 @dp.message_handler(state=Form.phone)
 async def process_phone(message: types.Message, state: FSMContext) -> None:
+    """Handler function to process the user's phone number."""
+
     async with state.proxy() as data:
         data['phone'] = message.text
     await bot.send_message(message.chat.id, "Ваш E-mail:")
@@ -56,6 +66,8 @@ async def process_phone(message: types.Message, state: FSMContext) -> None:
 
 @dp.message_handler(state=Form.email)
 async def process_email(message: types.Message, state: FSMContext) -> None:
+    """Handler function to process the user's email."""
+
     async with state.proxy() as data:
         data['email'] = message.text
     await bot.send_message(message.chat.id, "Ссылка на ваши социальные сети:")
@@ -64,6 +76,8 @@ async def process_email(message: types.Message, state: FSMContext) -> None:
 
 @dp.message_handler(state=Form.social_media)
 async def process_social_media(message: types.Message, state: FSMContext) -> None:
+    """Handler function to process the user's social media link."""
+
     async with state.proxy() as data:
         data['social_media'] = message.text
     await bot.send_message(message.chat.id, "Какая у вас профессия?")
@@ -72,6 +86,8 @@ async def process_social_media(message: types.Message, state: FSMContext) -> Non
 
 @dp.message_handler(state=Form.profession)
 async def process_profession(message: types.Message, state: FSMContext) -> None:
+    """Handler function to process the user's profession."""
+
     async with state.proxy() as data:
         data['profession'] = message.text
     await bot.send_message(message.chat.id, "Чем бы вы хотели помогать людям?")
@@ -80,6 +96,8 @@ async def process_profession(message: types.Message, state: FSMContext) -> None:
 
 @dp.message_handler(state=Form.help)
 async def process_help(message: types.Message, state: FSMContext) -> None:
+    """Handler function to process the user's help preferences and conclude the poll."""
+
     await bot.send_message(message.chat.id, f"Спасибо за участие в опросе! Чтобы вступить в группу перейдите по ссылке: {PRIVATE_GROUP_LINK}")
     async with state.proxy() as data:
         data['help'] = message.text
