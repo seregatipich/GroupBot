@@ -70,4 +70,7 @@ python3 main.py
 Feel free to fork the project and submit pull requests. Ensure to follow the code structure and format.
 
 ## License
-This project is open-source and available under MIT License 
+This project is open-source and available under MIT License.
+
+## Author
+seregatipich
