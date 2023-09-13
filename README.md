@@ -52,3 +52,7 @@ GOOGLE_SPREADSHEET_NAME=your_google_spreadsheet_name_here
 ```
 python3 main.py
 ```
+
+## Bot Commands
+- '/start': Initiates the conversation with a greeting message.
+- '/nachat_opros': Starts the application process by asking for the user's details step by step.
