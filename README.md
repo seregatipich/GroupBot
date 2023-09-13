@@ -30,11 +30,12 @@ pip install -r requirements.txt
 ```
 
 ## Environment Variables
-
-#### You need to set up a few environment variables to get the bot working. Create a .env file in the project directory and add the following variables:
+#### You need to set up a few environment variables to get the bot working. Create a '.env' file in the project directory and add the following variables:
 
 ```
 TELEGRAM_TOKEN=your_telegram_bot_token_here
 TELEGRAM_GROUP_LINK=your_telegram_group_link_here
 GOOGLE_SPREADSHEET_NAME=your_google_spreadsheet_name_here
 ```
+
+## Setting Up Google Sheets API
