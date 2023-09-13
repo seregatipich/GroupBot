@@ -12,7 +12,7 @@
 
 ## Usage:
 
-Clone the repo to your local machine:
+1. Clone the repo to your local machine:
 ```
 git clone git@github.com:seregatipich/GroupBot.git
 ```
