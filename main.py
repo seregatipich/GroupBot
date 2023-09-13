@@ -27,7 +27,7 @@ class Form(StatesGroup):
     help = State()
 
 
-@dp.message_handler(commands=['start'])
+@dp.message_handler(commands=['start'], state='*')
 async def start(message: types.Message) -> None:
     await bot.send_message(message.chat.id, 'Привет!\nОтветь на несколько вопросов, чтобы попасть в группу.\nНажми на 👉🏻 /nachat_opros.')
 
