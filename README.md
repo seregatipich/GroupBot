@@ -30,7 +30,7 @@ pip install -r requirements.txt
 ```
 
 ## Environment Variables
-#### You need to set up a few environment variables to get the bot working. Create a '.env' file in the project directory and add the following variables:
+You need to set up a few environment variables to get the bot working. Create a '.env' file in the project directory and add the following variables:
 
 ```
 TELEGRAM_TOKEN=your_telegram_bot_token_here
